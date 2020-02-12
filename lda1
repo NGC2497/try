@@ -1,0 +1,40 @@
+rom sklearn.datasets import load_wine
+import pandas as pd
+import numpy as np
+
+np.set_printoptions(precision=4)
+from matplotlib import pyplot as plt
+#import seaborn as sb
+#sb.set()
+from sklearn.preprocessing import LabelEncoder
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+
+wine=load_wine()
+
+X = pd.DataFrame(wine.data)
+arr=['c0','c1','c2']
+y = pd.Categorical.from_codes(wine.target,wine.target_names)
+dataL=X.shape
+
+#print(X.head())
+#print(wine.feature_names)
+print(y)
+#dCx=x*muk/(sigma^2)+log(pik)-((muk/sigma)^2)/2
+
+
+df=X.join(pd.Series(y,name='ck'))
+#df=X
+print(df)
+
+
+muk = pd.DataFrame(columns=wine.target_names)
+
+for c, rows in df.groupby('ck'):
+    muk[c] = rows.mean()
+
+print(muk)
+size=muk.shape
+pik=size[1]/dataL[1]
+
